@@ -399,10 +399,30 @@ function Contact() {
     ebitda: '', stage: '', message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const formRef = useFadeUp()
   const sideRef = useFadeUp()
   const set = key => e => setForm(f => ({ ...f, [key]: e.target.value }))
-  const handleSubmit = e => { e.preventDefault(); setSubmitted(true) }
+  const handleSubmit = async e => {
+    e.preventDefault()
+    setSubmitting(true)
+    try {
+      const res = await fetch('https://formspree.io/f/xbdzaojq', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        alert('Something went wrong. Please email us directly at contact@reivaxpartners.com')
+      }
+    } catch {
+      alert('Something went wrong. Please email us directly at contact@reivaxpartners.com')
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   return (
     <section id="contact" className="contact-section">
@@ -485,8 +505,9 @@ function Contact() {
                 </div>
 
                 <div className="form-submit">
-                  <button type="submit" className="btn-primary">
-                    Send Message <ArrowRight size={14} />
+                  <button type="submit" className="btn-primary" disabled={submitting}
+                    style={{ opacity: submitting ? .7 : 1, cursor: submitting ? 'wait' : 'pointer' }}>
+                    {submitting ? 'Sending…' : <><span>Send message</span> <ArrowRight size={14} /></>}
                   </button>
                 </div>
               </form>
