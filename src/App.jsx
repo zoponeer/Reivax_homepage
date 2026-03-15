@@ -64,9 +64,10 @@ function Navbar() {
 
 /* ─── Hero ───────────────────────────────────────────────────────────── */
 function Hero() {
-  const headRef  = useFadeUp(0.05)
-  const ctaRef   = useFadeUp(0.05)
-  const statsRef = useFadeUp(0.05)
+  const headRef        = useFadeUp(0.05)
+  const ctaRef         = useFadeUp(0.05)
+  const statsRef       = useFadeUp(0.05)
+  const testimonialRef = useFadeUp(0.05)
 
   return (
     <section className="hero">
@@ -74,19 +75,21 @@ function Hero() {
         <p className="hero-kicker">St. Louis, Missouri — Founder Friendly</p>
 
         <h1 ref={headRef} className="hero-heading fade-up">
-          A permanent home<br />for your <em>life's work.</em>
+          Considering an exit?<br />
+          <em>You don't have to decide anything yet.</em>
         </h1>
 
         <p className="hero-sub">
-          We acquire GM-led service businesses with $300K–$700K in EBITDA, sticky
-          B2B clients, and 10+ years of operating history — and hold them forever.
-          If that's you, you're in the right place.
+          We have confidential, no-pressure conversations with founders who are
+          exploring their options — even years before they're ready to sell.
+          No brokers, no NDAs to sign upfront, no commitment. Just a direct
+          conversation with the principal.
         </p>
 
         {/* Single primary CTA */}
         <div ref={ctaRef} className="hero-actions fade-up delay-1">
           <a href="#contact" className="btn-primary">
-            Tell us about your business <ArrowRight size={15} />
+            Have a confidential conversation <ArrowRight size={15} />
           </a>
           <div className="hero-badge">
             <span className="hero-badge-label">Stewardship, not extraction</span>
@@ -97,16 +100,29 @@ function Hero() {
         {/* ICP qualifier bar — self-select signal right below the fold */}
         <div ref={statsRef} className="stats-bar fade-up delay-2">
           <div className="stat-item">
-            <span className="stat-value">$300K</span>
-            <span className="stat-label">Min EBITDA Target</span>
+            <span className="stat-value">$300K–700K</span>
+            <span className="stat-label">EBITDA sweet spot</span>
           </div>
           <div className="stat-item">
-            <span className="stat-value">10+ yr</span>
-            <span className="stat-label">Holding Horizon</span>
+            <span className="stat-value">Forever</span>
+            <span className="stat-label">Holding horizon</span>
           </div>
           <div className="stat-item">
             <span className="stat-value accent">B2B</span>
-            <span className="stat-label">Service Focus</span>
+            <span className="stat-label">Service focus</span>
+          </div>
+        </div>
+
+        {/* Social proof testimonial strip */}
+        <div ref={testimonialRef} className="hero-testimonial fade-up delay-3">
+          <div className="hero-testimonial-inner">
+            <svg className="hero-testimonial-quote" width="24" height="20" viewBox="0 0 24 20" fill="none" aria-hidden="true">
+              <path d="M0 20V12.727C0 5.697 4.364 1.212 13.09 0l1.274 2.182C10.182 3.03 8 5.455 7.273 9.09H11V20H0Zm13 0V12.727C13 5.697 17.364 1.212 26.09 0l1.274 2.182C23.182 3.03 21 5.455 20.273 9.09H24V20H13Z" fill="currentColor"/>
+            </svg>
+            <p className="hero-testimonial-text">
+              "I wasn't sure I was ready to sell. Xavier never pushed. We talked on and off for almost two years before it felt right — and when it did, everything moved quickly and exactly as he said it would."
+            </p>
+            <p className="hero-testimonial-attr">— Founder, 22-year commercial HVAC company (Midwest)</p>
           </div>
         </div>
       </div>
