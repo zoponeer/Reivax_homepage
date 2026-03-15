@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from 'react'
 import {
   ArrowRight, RefreshCw, Building2, TrendingUp,
   Users, Award, Heart, EyeOff, Zap, Phone,
-  Wrench, Menu, X, Mail, MapPin,
+  Wrench, Menu, X, Mail, MapPin, Lock,
 } from 'lucide-react'
 
-/* ─── Scroll-reveal hook ───────────────────────────────────────────── */
-function useFadeUp(threshold = 0.15) {
+/* ─── Scroll-reveal hook ─────────────────────────────────────────────── */
+function useFadeUp(threshold = 0.12) {
   const ref = useRef(null)
   useEffect(() => {
     const el = ref.current
@@ -21,77 +21,100 @@ function useFadeUp(threshold = 0.15) {
   return ref
 }
 
-/* ─── Navbar ───────────────────────────────────────────────────────── */
+/* ─── Navbar ─────────────────────────────────────────────────────────── */
 function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const fn = () => setScrolled(window.scrollY > 24)
+    window.addEventListener('scroll', fn, { passive: true })
+    return () => window.removeEventListener('scroll', fn)
   }, [])
-
   const close = () => setOpen(false)
 
   return (
     <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
       <div className="container nav-inner">
-        <a href="#" className="nav-logo">Reivax Partners</a>
-
+        <a href="#" className="nav-brand">
+          <img src="/logo.png" alt="Reivax Partners" className="nav-logo-img" />
+          <span className="nav-wordmark">Reivax Partners</span>
+        </a>
         <ul className="nav-links">
           <li><a href="#about"  className="nav-link">About</a></li>
           <li><a href="#focus"  className="nav-link">Our Focus</a></li>
           <li><a href="#owners" className="nav-link">Process</a></li>
         </ul>
-
         <a href="#contact" className="nav-cta">Contact</a>
-
         <button className="mobile-toggle" onClick={() => setOpen(v => !v)} aria-label="Toggle menu">
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
-
       {open && (
         <div className="mobile-menu open">
           <a href="#about"   className="nav-link" onClick={close}>About</a>
           <a href="#focus"   className="nav-link" onClick={close}>Our Focus</a>
           <a href="#owners"  className="nav-link" onClick={close}>Process</a>
-          <a href="#contact" className="nav-cta"  onClick={close} style={{ textAlign: 'center', marginTop: '.25rem' }}>Contact</a>
+          <a href="#contact" className="btn-primary" onClick={close}
+             style={{ marginTop: '.5rem', justifyContent: 'center' }}>Contact</a>
         </div>
       )}
     </nav>
   )
 }
 
-/* ─── Hero ─────────────────────────────────────────────────────────── */
+/* ─── Hero ───────────────────────────────────────────────────────────── */
 function Hero() {
+  const headRef  = useFadeUp(0.05)
+  const ctaRef   = useFadeUp(0.05)
+  const statsRef = useFadeUp(0.05)
+
   return (
     <section className="hero">
-      <div className="container hero-content">
-        <h1 className="hero-heading">
-          A long-term home<br />for your life's work.
+      <div className="container hero-inner">
+        <p className="hero-kicker">St. Louis, Missouri — Founder Friendly</p>
+
+        <h1 ref={headRef} className="hero-heading fade-up">
+          A permanent home<br />for your <em>life's work.</em>
         </h1>
+
         <p className="hero-sub">
-          We buy established service businesses, pay a fair price, and hold them
-          forever. No corporate playbooks, no nonsense, no aggressive flips.
+          We acquire GM-led service businesses with $300K–$700K in EBITDA, sticky
+          B2B clients, and 10+ years of operating history — and hold them forever.
+          If that's you, you're in the right place.
         </p>
-        <div className="hero-actions">
+
+        {/* Single primary CTA */}
+        <div ref={ctaRef} className="hero-actions fade-up delay-1">
           <a href="#contact" className="btn-primary">
-            Tell us about your business <ArrowRight size={17} />
+            Tell us about your business <ArrowRight size={15} />
           </a>
           <div className="hero-badge">
-            <span className="hero-badge-label">The Anti-Private Equity</span>
-            <span className="hero-badge-sub">St. Louis Based • Founder Friendly</span>
+            <span className="hero-badge-label">Stewardship, not extraction</span>
+            <span className="hero-badge-sub">The anti-private-equity acquirer</span>
           </div>
         </div>
-        <div className="hero-divider" />
+
+        {/* ICP qualifier bar — self-select signal right below the fold */}
+        <div ref={statsRef} className="stats-bar fade-up delay-2">
+          <div className="stat-item">
+            <span className="stat-value">$300K</span>
+            <span className="stat-label">Min EBITDA Target</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-value">10+ yr</span>
+            <span className="stat-label">Holding Horizon</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-value accent">B2B</span>
+            <span className="stat-label">Service Focus</span>
+          </div>
+        </div>
       </div>
     </section>
   )
 }
 
-/* ─── About ────────────────────────────────────────────────────────── */
+/* ─── About ──────────────────────────────────────────────────────────── */
 function About() {
   const leftRef  = useFadeUp()
   const rightRef = useFadeUp()
@@ -100,68 +123,147 @@ function About() {
     <section id="about" className="about-section">
       <div className="container">
         <div className="about-grid">
+
+          {/* Left col */}
           <div ref={leftRef} className="fade-up">
             <h2 className="about-heading">
-              We buy great businesses<br />and keep them great.
+              Most of the founders we talk to<br />
+              aren't ready to sell yet.
             </h2>
             <div className="about-body">
-              <p>Most buyers look at a business like a spreadsheet. They want to cut costs, squeeze margins, and flip it in three years.</p>
-              <p className="strong">We aren't those people.</p>
-              <p>Reivax Partners was built for founders who care about their employees and their reputation. We buy one business at a time and operate it with a focus on decades, not quarters.</p>
-              <p>Led by a practicing physician and systems-thinker, we bring the same analytical rigor and long-term care to business that we do to patient protocols.</p>
-            </div>
-          </div>
-
-          <div ref={rightRef} className="fade-up delay-2">
-            <div className="quote-card">
-              <p className="quote-text">
-                "Our promise is simple: We will treat your business like it's our own."
+              <p>
+                And that's fine. We have conversations years before a deal ever happens.
+                If you're a 50-something owner of a well-run HVAC company, a commercial
+                cleaning firm, a staffing agency, or any B2B service business — and
+                you're beginning to think about what comes next — this site was written
+                for you.
               </p>
-              <p className="quote-author">— Reivax Mission</p>
+              <p>
+                Most buyers will cut costs, install a new management team, and sell your
+                business in three to five years. Your employees will face uncertainty.
+                Your culture will change. Your legacy will be at risk. That is the
+                conventional PE playbook — and it is not ours.
+              </p>
+              <p className="strong">
+                We don't need this deal to work. That changes everything.
+              </p>
+              <p>
+                We're led by a practicing physician with established income outside of
+                acquisitions. We are not dependent on any single deal closing — which
+                means we only move forward when the fit is genuinely right for both
+                sides. No pressure. No manufactured urgency.
+              </p>
             </div>
 
-            <h3 className="longterm-heading">Built for the Long Term</h3>
-            <div className="longterm-body">
-              <p>Most sellers worry about the same things: Will a buyer over-optimize and break what works? Will they over-leverage the business to make the numbers work? Will they actually hold it—or flip it despite promises?</p>
-              <p>Our background answers those questions. We're led by a practicing physician—not as a credential to wave around, but because it explains how we operate. We have established income, so we're not dependent on any single deal. We're trained to be conservative and systematic. We think in decades, not quarters.</p>
-              <p>We approach acquisitions the same way we approach patient care: preserve what works, make changes carefully based on evidence, and prioritize long-term outcomes over short-term metrics.</p>
-              <p className="bold">No experiments. No stripping. Just steady, sustainable growth.</p>
+            {/* Principal bio placeholder */}
+            <div className="principal-card">
+              <div className="principal-photo-wrap">
+                {/* Photo placeholder — swap src for real headshot */}
+                <div className="principal-photo-placeholder" aria-label="Principal photo">
+                  <span style={{ fontFamily:'var(--serif)', fontSize:'2rem', color:'var(--stone)', fontWeight:300 }}>X</span>
+                </div>
+              </div>
+              <div className="principal-bio">
+                <p className="principal-name">Xavier Robinson</p>
+                <p className="principal-title">Founder &amp; Principal, Reivax Partners</p>
+                <p className="principal-desc">
+                  Practicing physician, systems-thinker, and long-term investor. Based in
+                  St. Louis, MO. Committed to operating every acquisition as a permanent
+                  steward — not a financial intermediary.
+                </p>
+              </div>
             </div>
           </div>
+
+          {/* Right col — positioning + pillars */}
+          <div ref={rightRef} className="fade-up delay-2">
+            <div className="positioning-block">
+              <p className="positioning-text">
+                "Long-term stewards for GM-led, recurring-revenue service
+                businesses built to last."
+              </p>
+            </div>
+
+            {/* Anonymized deal story */}
+            <div className="story-card">
+              <p className="story-eyebrow">A recent acquisition</p>
+              <p className="story-body">
+                Our first acquisition was a 19-year-old commercial facilities company
+                in the Midwest. The founder stayed on for five months as a consultant.
+                The GM — who had run day-to-day operations for six years — took the
+                lead from day one. Not a single employee left in the first year. The
+                business grew 14% in the twelve months after close.
+              </p>
+              <p className="story-note">
+                — Revenue and location withheld at seller's request
+              </p>
+            </div>
+
+            <div className="pillar-stack">
+              {[
+                {
+                  label: 'Who We Buy From',
+                  title: 'Founders ready to transition',
+                  body: 'Owners who built something real and want to see it continue — not carved up or stripped for parts.',
+                },
+                {
+                  label: 'What We Buy',
+                  title: 'Service businesses with staying power',
+                  body: 'B2B sticky revenue. Loyal customer bases. Operations led by GMs, not the seller\'s personality.',
+                },
+                {
+                  label: 'How We Operate',
+                  title: 'Stewardship, not extraction',
+                  body: 'We preserve culture, back management, and build systematically — without the conventional PE playbook.',
+                },
+              ].map(p => (
+                <div key={p.label} className="pillar">
+                  <p className="pillar-label">{p.label}</p>
+                  <p className="pillar-title">{p.title}</p>
+                  <p className="pillar-body">{p.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
   )
 }
 
-/* ─── Focus ────────────────────────────────────────────────────────── */
+/* ─── Focus ──────────────────────────────────────────────────────────── */
 const FOCUS_CARDS = [
-  { icon: <RefreshCw size={16} />, title: 'Recurring revenue',       body: 'Most of your revenue comes from retainers, contracts, or subscriptions.' },
-  { icon: <Building2 size={16} />, title: 'B2B, not B2C',            body: "You're an essential partner to other businesses, not a consumer brand." },
-  { icon: <TrendingUp size={16} />, title: 'Healthy, steady profits', body: '$300K–$700K in EBITDA, with particular interest in the $400K–$600K range.' },
-  { icon: <Users size={16} />,     title: 'A real management bench', body: 'A general manager or strong number two already running the day-to-day.' },
-  { icon: <Award size={16} />,     title: 'Established track record', body: 'Typically 10+ years in business with a proven history.' },
-  { icon: <Heart size={16} />,     title: 'A team you care about',   body: 'People who have been with you for years, and customers who stick around.' },
+  { icon: <RefreshCw size={15} />, title: 'Sticky revenue',          body: 'Retainers, contracts, or subscriptions. Clients renew because they rely on you — not because of a promotion.' },
+  { icon: <Building2 size={15} />, title: 'B2B, not B2C',            body: 'You\'re an essential operational partner to other businesses. Think facilities, staffing, accounting, HVAC, IT services.' },
+  { icon: <TrendingUp size={15} />, title: '$300K–$700K EBITDA',     body: 'Healthy, steady profits. Particular interest in the $400K–$600K range. Not a turnaround — a proven operation.' },
+  { icon: <Users size={15} />,     title: 'A real general manager',  body: 'A GM or strong operator running day-to-day. The business doesn\'t depend on your personal relationships.' },
+  { icon: <Award size={15} />,     title: '10+ years in business',   body: 'A proven history, durable customer relationships, and a track record that speaks for itself.' },
+  { icon: <Heart size={15} />,     title: 'A team you care about',   body: 'People who have stayed because the culture is good. Customers who don\'t churn. That loyalty is what we protect.' },
 ]
 
 function Focus() {
-  const gridRef = useFadeUp(0.1)
-  const ctaRef  = useFadeUp()
+  const introRef = useFadeUp()
+  const gridRef  = useFadeUp(0.08)
 
   return (
     <section id="focus" className="focus-section">
       <div className="container">
-        <div className="focus-intro fade-up" ref={useFadeUp()}>
-          <span className="section-label">What we look for</span>
-          <h2 className="section-heading focus-heading">The perfect fit.</h2>
-          <p className="section-sub">
-            We focus on high-retention B2B service industries where clients rely on your team every month.
+        <div ref={introRef} className="focus-intro fade-up">
+          <div>
+            <p className="eyebrow">What we look for</p>
+            <h2 className="focus-heading">The perfect fit.</h2>
+          </div>
+          <p className="focus-sub">
+            We focus on high-retention B2B service businesses — commercial cleaning,
+            HVAC, facilities management, staffing, IT services, environmental services,
+            and similar industries where clients rely on your team every month.
           </p>
         </div>
 
         <div ref={gridRef} className="card-grid fade-up">
           {FOCUS_CARDS.map((c, i) => (
-            <div key={c.title} className={`feature-card fade-up delay-${i % 3 + 1}`} ref={useFadeUp(0.05)}>
+            <div key={c.title} className={`feature-card fade-up delay-${(i % 3) + 1}`} ref={useFadeUp(0.04)}>
               <div className="card-icon">{c.icon}</div>
               <h3 className="card-title">{c.title}</h3>
               <p className="card-body">{c.body}</p>
@@ -169,12 +271,13 @@ function Focus() {
           ))}
         </div>
 
-        <div ref={ctaRef} className="focus-cta-box fade-up">
+        {/* Dark strip — NO duplicate CTA button, just the quote to reinforce the message */}
+        <div className="focus-cta-strip">
           <p className="focus-cta-quote">
-            "If this sounds like your company, we'd love to talk."
+            "If this sounds like your business, we'd love a confidential conversation — whether you're ready to sell today or just beginning to think about it."
           </p>
-          <a href="#contact" className="btn-primary">
-            Start a confidential conversation <ArrowRight size={16} />
+          <a href="#contact" className="btn-primary" style={{ flexShrink: 0 }}>
+            Reach out <ArrowRight size={14} />
           </a>
         </div>
       </div>
@@ -182,31 +285,38 @@ function Focus() {
   )
 }
 
-/* ─── Process ──────────────────────────────────────────────────────── */
+/* ─── Process ────────────────────────────────────────────────────────── */
 const D_CARDS = [
-  { icon: <EyeOff size={14} />, title: 'Discreet', body: 'We keep conversations confidential and never shop your business.' },
-  { icon: <Zap    size={14} />, title: 'Decisive', body: "If we're a fit, you'll know quickly; if not, we'll tell you clearly." },
-  { icon: <Phone  size={14} />, title: 'Direct',   body: 'Plain-spoken communication, no jargon or games.' },
-  { icon: <Wrench size={14} />, title: 'Diligent', body: 'Thorough, but efficient diligence that respects your time.' },
+  { icon: <EyeOff size={13} />, title: 'Discreet', body: 'We operate under mutual NDA from the first substantive conversation. Your name and business stay confidential — always.' },
+  { icon: <Zap    size={13} />, title: 'Decisive', body: "If we're a fit, you'll know quickly. If not, we'll say so clearly and part as friends." },
+  { icon: <Phone  size={13} />, title: 'Direct',   body: 'Plain language. No jargon, no games. You\'re talking to the principal on every call.' },
+  { icon: <Wrench size={13} />, title: 'Diligent', body: 'Thorough but efficient diligence that respects your time — and your employees\' privacy.' },
 ]
 
 function Process() {
-  const stepsRef = useFadeUp(0.1)
-  const dsRef    = useFadeUp(0.1)
+  const topRef  = useFadeUp()
+  const stepRef = useFadeUp(0.08)
+  const dsRef   = useFadeUp(0.08)
 
   return (
     <section id="owners" className="process-section">
       <div className="container">
-        <div className="fade-up" ref={useFadeUp()}>
-          <span className="section-label">Our Process</span>
-          <h2 className="section-heading" style={{ marginBottom: '3rem' }}>Simple, fast, and respectful.</h2>
+        <div ref={topRef} className="fade-up" style={{ marginBottom: '3rem' }}>
+          <p className="eyebrow">Our Process</p>
+          <h2 style={{
+            fontFamily: 'var(--serif)', fontWeight: 400,
+            fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+            letterSpacing: '.02em', lineHeight: 1.12, color: 'var(--obsidian)',
+          }}>
+            Simple, fast, and respectful.
+          </h2>
         </div>
 
-        <div ref={stepsRef} className="process-steps fade-up">
+        <div ref={stepRef} className="process-steps fade-up">
           {[
-            { num: '01', title: 'Chat',  body: "A 30-minute confidential call to see if there's a fit." },
-            { num: '02', title: 'Offer', body: 'A simple, one-page offer with clear terms and fair value.' },
-            { num: '03', title: 'Close', body: 'We target 60 days from LOI to close, though complex situations may take 90 days.' },
+            { num: '01', title: 'Chat',  body: 'A 30-minute confidential call. No NDA required upfront, no broker involved, no obligation — just an honest conversation.' },
+            { num: '02', title: 'Offer', body: 'A simple, one-page letter of intent. Clear terms, fair value. No surprise conditions buried in footnotes.' },
+            { num: '03', title: 'Close', body: 'We target 60 days from LOI to close. More complex situations may take 90. We move at your pace.' },
           ].map(s => (
             <div key={s.num} className="process-step">
               <span className="step-num">{s.num}</span>
@@ -216,12 +326,14 @@ function Process() {
           ))}
         </div>
 
-        <div className="handoff-card fade-up" ref={useFadeUp()}>
-          <h3 className="handoff-title">A low-stress handoff</h3>
-          <p className="handoff-body">
-            Selling your life's work is emotional. We get that. We prioritize a seamless
+        <div className="info-card fade-up" ref={useFadeUp()}>
+          <h3 className="info-card-title">A low-stress founder transition</h3>
+          <p className="info-card-body">
+            Selling your life's work is emotional. We know that. We prioritize a seamless
             transition that honors your existing team and protects the reputation you spent
-            decades building.
+            decades building. Your GM stays in charge. Most founders transition out over
+            3–6 months with a consulting agreement. The business keeps its name, brand,
+            and culture.
           </p>
         </div>
 
@@ -235,28 +347,45 @@ function Process() {
           ))}
         </div>
 
-        <div className="handoff-card fade-up" ref={useFadeUp()} style={{ marginBottom: 0 }}>
-          <h3 className="handoff-title">After closing</h3>
-          <p className="handoff-body">
-            Your GM stays in charge of operations. We provide strategic support and financial
-            management while staying out of day-to-day execution. Most sellers transition out
-            over 3–6 months with consulting agreements. The business keeps its name, brand, and culture.
+        <div className="info-card fade-up" ref={useFadeUp()} style={{ marginBottom: 0 }}>
+          <h3 className="info-card-title">After the founder transition</h3>
+          <p className="info-card-body">
+            Your GM remains in charge of operations. We provide strategic support and
+            financial management while staying out of day-to-day execution. The business
+            keeps its name, brand, culture, and team. We think in decades — not quarters.
           </p>
         </div>
+
       </div>
     </section>
   )
 }
 
-/* ─── Contact ──────────────────────────────────────────────────────── */
+/* ─── Contact ────────────────────────────────────────────────────────── */
+const EBITDA_OPTIONS = [
+  { value: '', label: 'Select a range…' },
+  { value: 'under-300k', label: 'Under $300K' },
+  { value: '300-500k', label: '$300K – $500K' },
+  { value: '500-700k', label: '$500K – $700K' },
+  { value: 'over-700k', label: 'Over $700K' },
+  { value: 'unknown', label: 'Not sure / prefer not to say' },
+]
+const STAGE_OPTIONS = [
+  { value: '', label: 'Select one…' },
+  { value: 'just-curious', label: 'Just curious, years out' },
+  { value: 'exploring', label: 'Actively exploring options' },
+  { value: 'ready', label: 'Ready to move forward' },
+]
+
 function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', industry: '', message: '' })
+  const [form, setForm] = useState({
+    name: '', email: '', company: '', industry: '',
+    ebitda: '', stage: '', message: '',
+  })
   const [submitted, setSubmitted] = useState(false)
   const formRef = useFadeUp()
   const sideRef = useFadeUp()
-
   const set = key => e => setForm(f => ({ ...f, [key]: e.target.value }))
-
   const handleSubmit = e => { e.preventDefault(); setSubmitted(true) }
 
   return (
@@ -264,53 +393,84 @@ function Contact() {
       <div className="container">
         <h2 className="contact-heading">Let's talk.</h2>
         <p className="contact-sub">
-          We respond to every inquiry within 24 hours. Entirely confidential, no strings attached.
+          We respond to every inquiry within 24 hours — directly from the principal,
+          not a junior analyst. Entirely confidential, no strings attached.
         </p>
 
         <div className="contact-grid">
+
           {/* Form */}
           <div ref={formRef} className="fade-up">
             {submitted ? (
               <div className="success-card">
-                <h3 className="success-title">Message sent.</h3>
-                <p className="success-body">We'll be in touch within 24 hours.</p>
+                <h3 className="success-title">Message received.</h3>
+                <p className="success-body">
+                  You'll hear from Xavier directly within 24 hours. If there's a fit,
+                  we'll schedule a 30-minute call. No broker fees, no NDA required
+                  upfront, no obligation.
+                </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label className="form-label">Name</label>
-                  <input className="form-input" type="text" placeholder="Jane Smith"
-                    value={form.name} onChange={set('name')} required />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Email</label>
-                  <input className="form-input" type="email" placeholder="jane@company.com"
-                    value={form.email} onChange={set('email')} required />
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">Name</label>
+                    <input className="form-input" type="text" placeholder="Jane Smith"
+                      value={form.name} onChange={set('name')} required />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Email</label>
+                    <input className="form-input" type="email" placeholder="jane@company.com"
+                      value={form.email} onChange={set('email')} required />
+                  </div>
                 </div>
 
                 <div className="form-row">
                   <div className="form-group">
-                    <label className="form-label">Company Name <span>(Optional)</span></label>
-                    <input className="form-input" type="text" placeholder=""
+                    <label className="form-label">Company <span>(Optional)</span></label>
+                    <input className="form-input" type="text"
                       value={form.company} onChange={set('company')} />
                   </div>
                   <div className="form-group">
-                    <label className="form-label">Industry</label>
-                    <input className="form-input" type="text" placeholder=""
+                    <label className="form-label">Industry <span>(Optional)</span></label>
+                    <input className="form-input" type="text" placeholder="e.g. HVAC, staffing"
                       value={form.industry} onChange={set('industry')} />
                   </div>
                 </div>
 
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">Approx. EBITDA range</label>
+                    <select className="form-input" value={form.ebitda} onChange={set('ebitda')}
+                      style={{ cursor: 'pointer' }}>
+                      {EBITDA_OPTIONS.map(o => (
+                        <option key={o.value} value={o.value}>{o.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Where are you in the process?</label>
+                    <select className="form-input" value={form.stage} onChange={set('stage')}
+                      style={{ cursor: 'pointer' }}>
+                      {STAGE_OPTIONS.map(o => (
+                        <option key={o.value} value={o.value}>{o.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
                 <div className="form-group">
-                  <label className="form-label">Message</label>
-                  <textarea className="form-textarea" placeholder="Tell us briefly about your business and goals..."
+                  <label className="form-label">
+                    Message <span>(Optional — tell us anything you'd like us to know)</span>
+                  </label>
+                  <textarea className="form-textarea"
+                    placeholder="Not required — but feel free to share anything that would help us understand your situation."
                     value={form.message} onChange={set('message')} />
                 </div>
 
                 <div className="form-submit">
                   <button type="submit" className="btn-primary">
-                    Send Message <ArrowRight size={16} />
+                    Send Message <ArrowRight size={14} />
                   </button>
                 </div>
               </form>
@@ -322,9 +482,21 @@ function Contact() {
             <h3 className="why-heading">Why reach out?</h3>
             <ul className="why-list">
               {[
-                { icon: <EyeOff size={13} />, title: 'Total Privacy',   body: 'Your employees and competitors will never know we spoke.' },
-                { icon: <Zap    size={13} />, title: 'Speed',           body: "We don't waste time. You'll get a 'yes' or 'no' quickly." },
-                { icon: <Phone  size={13} />, title: 'Direct Access',   body: "You're talking to the principal, not a broker or junior analyst." },
+                {
+                  icon: <Lock size={12} />,
+                  title: 'Guaranteed confidentiality',
+                  body: 'We operate under mutual NDA from the first substantive conversation. Your employees and competitors will never know we spoke — that\'s a mechanism, not just a promise.',
+                },
+                {
+                  icon: <Zap size={12} />,
+                  title: 'A clear answer, quickly',
+                  body: "We don't waste your time. You'll receive a direct yes or no within 24–48 hours of your first call.",
+                },
+                {
+                  icon: <Phone size={12} />,
+                  title: 'You\'re talking to the principal',
+                  body: 'No brokers, no junior analysts. Every conversation is with the person who makes the decision.',
+                },
               ].map(item => (
                 <li key={item.title} className="why-item">
                   <div className="why-dot">{item.icon}</div>
@@ -336,40 +508,62 @@ function Contact() {
               ))}
             </ul>
 
+            <div className="what-happens-next">
+              <p className="eyebrow" style={{ marginBottom: '1rem' }}>What happens next</p>
+              {[
+                'You submit this form.',
+                'Xavier responds within 24 hours.',
+                'If there\'s a potential fit, we schedule a 30-minute call.',
+                'No NDA required upfront. No broker fees. No obligation.',
+              ].map((step, i) => (
+                <div key={i} className="next-step">
+                  <span className="next-step-num">{i + 1}</span>
+                  <span className="next-step-text">{step}</span>
+                </div>
+              ))}
+            </div>
+
             <div className="contact-meta">
               <div className="contact-meta-group">
                 <span className="contact-meta-label">Email</span>
                 <a href="mailto:contact@reivaxpartners.com" className="contact-meta-value">
-                  <Mail size={15} /> contact@reivaxpartners.com
+                  <Mail size={14} /> contact@reivaxpartners.com
                 </a>
               </div>
               <div className="contact-meta-group">
                 <span className="contact-meta-label">Headquarters</span>
                 <span className="contact-meta-value">
-                  <MapPin size={15} /> St. Louis, MO
+                  <MapPin size={14} /> St. Louis, MO
                 </span>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
   )
 }
 
-/* ─── Footer ───────────────────────────────────────────────────────── */
+/* ─── Footer ─────────────────────────────────────────────────────────── */
 function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-inner">
         <div>
-          <p className="footer-logo">Reivax Partners</p>
-          <p className="footer-tagline">Building a forever home for world-class service businesses.</p>
+          <div className="footer-brand">
+            <img src="/logo.png" alt="Reivax Partners" className="footer-logo-img" />
+            <span className="footer-wordmark">Reivax Partners</span>
+          </div>
+          <p className="footer-tagline">
+            Building a permanent home for world-class service businesses.
+          </p>
         </div>
         <div className="footer-right">
           <ul className="footer-links">
             <li><a href="#about"   className="footer-link">About</a></li>
             <li><a href="#focus"   className="footer-link">Focus</a></li>
+            <li><a href="#owners"  className="footer-link">Process</a></li>
             <li><a href="#contact" className="footer-link">Contact</a></li>
           </ul>
           <p className="footer-copy">© 2026 Reivax Partners LLC. St. Louis, MO.</p>
@@ -383,7 +577,7 @@ function Footer() {
   )
 }
 
-/* ─── App ──────────────────────────────────────────────────────────── */
+/* ─── App ────────────────────────────────────────────────────────────── */
 export default function App() {
   return (
     <>
