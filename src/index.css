@@ -205,16 +205,13 @@ button, input, textarea, select { font-family: var(--sans); }
   align-items: center;
   position: relative;
   overflow: hidden;
+  background: var(--ivory);
 }
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 65% 55% at 80% 15%, rgba(46,125,52,.06) 0%, transparent 60%),
-    radial-gradient(ellipse 35% 50% at 5%  85%, rgba(201,41,42,.025) 0%, transparent 55%);
-  pointer-events: none;
+
+/* Dark variant — obsidian background with spotlight */
+.hero--dark {
+  background: var(--obsidian);
 }
-.hero-inner { position: relative; z-index: 1; }
 
 .hero-kicker {
   font-family: var(--sans);
@@ -229,6 +226,8 @@ button, input, textarea, select { font-family: var(--sans); }
   gap: .9rem;
 }
 .hero-kicker::before { content: ''; width: 2rem; height: 1.5px; background: var(--canopy); flex-shrink: 0; }
+.hero--dark .hero-kicker { color: rgba(255,255,255,.45); }
+.hero--dark .hero-kicker::before { background: var(--canopy); }
 
 .hero-heading {
   font-family: var(--serif);
@@ -239,6 +238,8 @@ button, input, textarea, select { font-family: var(--sans); }
   max-width: 800px;
 }
 .hero-heading em { font-style: italic; color: var(--canopy); }
+.hero--dark .hero-heading { color: #F0EBE0; }
+.hero--dark .hero-heading em { color: #6DBF72; }   /* lighter canopy on dark bg */
 
 .hero-sub {
   font-size: 1.1rem;
@@ -248,6 +249,7 @@ button, input, textarea, select { font-family: var(--sans); }
   line-height: 1.85;
   margin-bottom: 2.75rem;
 }
+.hero--dark .hero-sub { color: rgba(240,235,224,.68); }
 
 .hero-actions {
   display: flex;
@@ -265,6 +267,9 @@ button, input, textarea, select { font-family: var(--sans); }
 }
 .hero-badge-label { font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--canopy); }
 .hero-badge-sub   { font-size: .85rem; font-weight: 400; color: var(--stone); }
+.hero--dark .hero-badge-label { color: #6DBF72; }
+.hero--dark .hero-badge-sub   { color: rgba(240,235,224,.5); }
+.hero--dark .hero-badge       { border-left-color: #6DBF72; }
 
 /* Stats bar */
 .stats-bar {
@@ -273,6 +278,8 @@ button, input, textarea, select { font-family: var(--sans); }
   border-top: 1px solid var(--border);
   padding-top: 2.25rem;
 }
+.hero--dark .stats-bar { border-top-color: rgba(255,255,255,.1); }
+
 .stat-item {
   display: flex;
   flex-direction: column;
@@ -280,6 +287,7 @@ button, input, textarea, select { font-family: var(--sans); }
   padding-right: 2rem;
 }
 .stat-item:not(:last-child) { border-right: 1px solid var(--border); margin-right: 2rem; }
+.hero--dark .stat-item:not(:last-child) { border-right-color: rgba(255,255,255,.1); }
 
 .stat-value {
   font-family: var(--serif);
@@ -288,41 +296,11 @@ button, input, textarea, select { font-family: var(--sans); }
   color: var(--obsidian);
 }
 .stat-value.accent { color: var(--canopy); }
-.stat-label { font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--stone); }
+.hero--dark .stat-value       { color: #F0EBE0; }
+.hero--dark .stat-value.accent { color: #6DBF72; }
 
-/* Testimonial strip below stats */
-.hero-testimonial {
-  margin-top: 2.75rem;
-  max-width: 640px;
-}
-.hero-testimonial-inner {
-  display: flex;
-  flex-direction: column;
-  gap: .75rem;
-  padding: 1.5rem 1.75rem;
-  background: var(--parchment);
-  border-left: 3px solid var(--canopy);
-  border-radius: 0 4px 4px 0;
-}
-.hero-testimonial-quote {
-  width: 20px;
-  color: var(--canopy);
-  opacity: .65;
-  flex-shrink: 0;
-}
-.hero-testimonial-text {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--obsidian);
-  line-height: 1.75;
-}
-.hero-testimonial-attr {
-  font-size: .75rem;
-  font-weight: 500;
-  letter-spacing: .08em;
-  color: var(--stone);
-}
+.stat-label { font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--stone); }
+.hero--dark .stat-label { color: rgba(240,235,224,.42); }
 
 /* ─── About Section ──────────────────────────────────────────────────── */
 .about-section {
@@ -698,7 +676,6 @@ button, input, textarea, select { font-family: var(--sans); }
 
   .principal-card { flex-direction: column; }
 
-  .hero-testimonial { margin-top: 2rem; }
 
   .focus-cta-strip { padding: 1.5rem; }
   .focus-cta-strip .btn-primary { width: 100%; justify-content: center; }

@@ -1,9 +1,53 @@
 import { useState, useEffect, useRef } from 'react'
+import { motion } from 'motion/react'
 import {
   ArrowRight, RefreshCw, Building2, TrendingUp,
   Users, Award, Heart, EyeOff, Zap, Phone,
   Wrench, Menu, X, Mail, MapPin, Lock,
 } from 'lucide-react'
+
+/* ─── Hero spotlight (adapted from Aceternity UI / motion) ──────────── */
+const SPOT_GREEN_1 = "radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(125,42%,52%,.16) 0, hsla(125,42%,32%,.05) 50%, hsla(125,42%,22%,0) 80%)"
+const SPOT_GREEN_2 = "radial-gradient(50% 50% at 50% 50%, hsla(125,42%,52%,.11) 0, hsla(125,42%,32%,.04) 80%, transparent 100%)"
+const SPOT_GREEN_3 = "radial-gradient(50% 50% at 50% 50%, hsla(125,42%,52%,.07) 0, hsla(125,42%,32%,.02) 80%, transparent 100%)"
+const SPOT_W = 560, SPOT_H = 1380, SPOT_SW = 240, SPOT_TY = -350
+
+function SpotlightBeam({ side = 'left', duration = 7, xOffset = 100 }) {
+  const dir = side === 'left' ? -1 : 1
+  const rot  = dir * -45
+  return (
+    <motion.div
+      animate={{ x: [0, dir * xOffset, 0] }}
+      transition={{ duration, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+      style={{ position:'absolute', top:0, [side]:0, width:'100vw', height:'100vh', zIndex:2, pointerEvents:'none' }}
+    >
+      <div style={{ position:'absolute', top:0, [side]:0, width:`${SPOT_W}px`, height:`${SPOT_H}px`, background:SPOT_GREEN_1, transform:`translateY(${SPOT_TY}px) rotate(${rot}deg)` }} />
+      <div style={{ position:'absolute', top:0, [side]:0, width:`${SPOT_SW}px`, height:`${SPOT_H}px`, background:SPOT_GREEN_2, transformOrigin:`top ${side}`, transform:`rotate(${rot}deg) translate(${side==='left'?'5%':'-5%'}, -50%)` }} />
+      <div style={{ position:'absolute', top:0, [side]:0, width:`${SPOT_SW}px`, height:`${SPOT_H}px`, background:SPOT_GREEN_3, transformOrigin:`top ${side}`, transform:`rotate(${rot}deg) translate(${side==='left'?'-180%':'180%'}, -70%)` }} />
+    </motion.div>
+  )
+}
+
+function HeroSpotlight() {
+  return (
+    <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ duration:1.5 }}
+      style={{ pointerEvents:'none', position:'absolute', inset:0, height:'100%', width:'100%' }}>
+      <SpotlightBeam side="left"  />
+      <SpotlightBeam side="right" />
+    </motion.div>
+  )
+}
+
+function HeroGrid() {
+  return (
+    <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ duration:1 }}
+      style={{
+        position:'absolute', inset:0, zIndex:0,
+        backgroundImage:`url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.035)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
+      }}
+    />
+  )
+}
 
 /* ─── Scroll-reveal hook ─────────────────────────────────────────────── */
 function useFadeUp(threshold = 0.12) {
@@ -64,14 +108,16 @@ function Navbar() {
 
 /* ─── Hero ───────────────────────────────────────────────────────────── */
 function Hero() {
-  const headRef        = useFadeUp(0.05)
-  const ctaRef         = useFadeUp(0.05)
-  const statsRef       = useFadeUp(0.05)
-  const testimonialRef = useFadeUp(0.05)
+  const headRef  = useFadeUp(0.05)
+  const ctaRef   = useFadeUp(0.05)
+  const statsRef = useFadeUp(0.05)
 
   return (
-    <section className="hero">
-      <div className="container hero-inner">
+    <section className="hero hero--dark">
+      <HeroGrid />
+      <HeroSpotlight />
+
+      <div className="container hero-inner" style={{ position:'relative', zIndex:10 }}>
         <p className="hero-kicker">St. Louis, Missouri — Founder Friendly</p>
 
         <h1 ref={headRef} className="hero-heading fade-up">
@@ -97,7 +143,7 @@ function Hero() {
           </div>
         </div>
 
-        {/* ICP qualifier bar — self-select signal right below the fold */}
+        {/* ICP qualifier bar */}
         <div ref={statsRef} className="stats-bar fade-up delay-2">
           <div className="stat-item">
             <span className="stat-value">$300K–700K</span>
@@ -110,19 +156,6 @@ function Hero() {
           <div className="stat-item">
             <span className="stat-value accent">B2B</span>
             <span className="stat-label">Service focus</span>
-          </div>
-        </div>
-
-        {/* Social proof testimonial strip */}
-        <div ref={testimonialRef} className="hero-testimonial fade-up delay-3">
-          <div className="hero-testimonial-inner">
-            <svg className="hero-testimonial-quote" width="24" height="20" viewBox="0 0 24 20" fill="none" aria-hidden="true">
-              <path d="M0 20V12.727C0 5.697 4.364 1.212 13.09 0l1.274 2.182C10.182 3.03 8 5.455 7.273 9.09H11V20H0Zm13 0V12.727C13 5.697 17.364 1.212 26.09 0l1.274 2.182C23.182 3.03 21 5.455 20.273 9.09H24V20H13Z" fill="currentColor"/>
-            </svg>
-            <p className="hero-testimonial-text">
-              "I wasn't sure I was ready to sell. Xavier never pushed. We talked on and off for almost two years before it felt right — and when it did, everything moved quickly and exactly as he said it would."
-            </p>
-            <p className="hero-testimonial-attr">— Founder, 22-year commercial HVAC company (Midwest)</p>
           </div>
         </div>
       </div>
@@ -200,18 +233,18 @@ function About() {
               </p>
             </div>
 
-            {/* Anonymized deal story */}
+            {/* Honest early-stage positioning */}
             <div className="story-card">
-              <p className="story-eyebrow">A recent acquisition</p>
+              <p className="story-eyebrow">Where we are</p>
               <p className="story-body">
-                Our first acquisition was a 19-year-old commercial facilities company
-                in the Midwest. The founder stayed on for five months as a consultant.
-                The GM — who had run day-to-day operations for six years — took the
-                lead from day one. Not a single employee left in the first year. The
-                business grew 14% in the twelve months after close.
+                We're actively looking for our first acquisition — and deliberately so.
+                We haven't rushed into a deal because we're patient enough to wait for
+                the right one. That means your business won't be one of forty in a
+                portfolio. You'll be the priority, the relationship, and the proof of
+                concept we've spent years preparing for.
               </p>
               <p className="story-note">
-                — Revenue and location withheld at seller's request
+                — We'd rather get one right than close many quickly
               </p>
             </div>
 
