@@ -1,0 +1,36 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ink: #0C0C0C;
+  --cream: #F3EAD1;
+  --emerald: #2BB673;
+  --crimson: #E8363C;
+  --forest: #0F3923;
+  --ink-60: rgba(12, 12, 12, 0.6);
+  --ink-20: rgba(12, 12, 12, 0.2);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--cream);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+}
+
+button, input, textarea {
+  font-family: 'Inter', sans-serif;
+}
