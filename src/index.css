@@ -8,16 +8,17 @@
   --parchment:  #EAE4D5;
   --obsidian:   #1C1C1A;
   --charcoal:   #3A3A38;
-  --stone:      #6E6B66;       /* darkened from #8A8680 for WCAG AA on light bg */
-  --canopy:     #2E7D34;       /* darkened from #3D8A42 for contrast */
+  --stone:      #8A8680;
+  --canopy:     #3D8A42;
   --canopy-lt:  #D6EDD8;
   --ember:      #C9292A;
-  --border:     #D8D2C4;       /* slightly darker than parchment for visibility */
+  --ember-lt:   #F7DADA;
+  --border:     #D4CEBB;
   --border-mid: rgba(58,58,56,.2);
 
-  /* Type — DM Serif Display (headings) + DM Sans (body/UI) */
-  --serif: 'DM Serif Display', Georgia, serif;
-  --sans:  'DM Sans', system-ui, -apple-system, sans-serif;
+  /* Type — Libre Franklin throughout; weight drives hierarchy */
+  --serif: 'Libre Franklin', 'Franklin Gothic Medium', Arial Narrow, sans-serif;
+  --sans:  'Libre Franklin', 'Franklin Gothic Medium', Arial Narrow, sans-serif;
 
   /* Easing */
   --ease-expo: cubic-bezier(.16,1,.3,1);
@@ -37,7 +38,7 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4 { font-family: var(--serif); color: var(--obsidian); line-height: 1.2; }
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--obsidian); line-height: 1.2; font-weight: 300; }
 p  { line-height: 1.85; }
 a  { text-decoration: none; color: inherit; }
 button, input, textarea, select { font-family: var(--sans); }
@@ -232,7 +233,9 @@ button, input, textarea, select { font-family: var(--sans); }
 .hero-heading {
   font-family: var(--serif);
   font-size: clamp(2.6rem, 5.5vw, 5rem);
+  font-weight: 300;
   line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--obsidian);
   margin-bottom: 1.75rem;
   max-width: 800px;
@@ -292,6 +295,8 @@ button, input, textarea, select { font-family: var(--sans); }
 .stat-value {
   font-family: var(--serif);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
   line-height: 1;
   color: var(--obsidian);
 }
@@ -316,7 +321,9 @@ button, input, textarea, select { font-family: var(--sans); }
 .about-heading {
   font-family: var(--serif);
   font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 300;
   line-height: 1.2;
+  letter-spacing: -0.01em;
   color: var(--obsidian);
   margin-bottom: 1.75rem;
 }
@@ -337,6 +344,7 @@ button, input, textarea, select { font-family: var(--sans); }
 .positioning-text {
   font-family: var(--serif);
   font-style: italic;
+  font-weight: 300;
   font-size: clamp(1.05rem, 1.8vw, 1.3rem);
   line-height: 1.6;
   color: var(--obsidian);
@@ -346,7 +354,7 @@ button, input, textarea, select { font-family: var(--sans); }
 .pillar { padding: 1.35rem 0; border-top: 1px solid var(--border); }
 .pillar:first-child { border-top: none; padding-top: 0; }
 .pillar-label { font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--stone); margin-bottom: .35rem; }
-.pillar-title { font-family: var(--serif); font-size: 1.05rem; color: var(--obsidian); margin-bottom: .3rem; }
+.pillar-title { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; color: var(--obsidian); margin-bottom: .3rem; }
 .pillar-body  { font-size: .93rem; color: var(--stone); line-height: 1.75; }
 
 /* Principal card */
@@ -374,14 +382,14 @@ button, input, textarea, select { font-family: var(--sans); }
   color: var(--stone);
 }
 .principal-photo-placeholder img { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
-.principal-name  { font-family: var(--serif); font-size: 1rem; color: var(--obsidian); margin-bottom: .15rem; }
+.principal-name  { font-family: var(--serif); font-size: 1rem; font-weight: 600; color: var(--obsidian); margin-bottom: .15rem; }
 .principal-title { font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--stone); margin-bottom: .5rem; }
 .principal-desc  { font-size: .88rem; color: var(--charcoal); line-height: 1.75; }
 
 /* Story card */
 .story-card { background: var(--obsidian); padding: 2rem 2.25rem; margin-bottom: 2.25rem; border-radius: 2px; }
 .story-eyebrow { font-size: .68rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--canopy); margin-bottom: .75rem; }
-.story-body    { font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: rgba(245,240,229,.85); line-height: 1.8; margin-bottom: .75rem; }
+.story-body    { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 1.05rem; color: rgba(245,240,229,.85); line-height: 1.8; margin-bottom: .75rem; }
 .story-note    { font-size: .78rem; color: rgba(245,240,229,.38); font-style: italic; }
 
 /* ─── Focus Section ──────────────────────────────────────────────────── */
@@ -398,7 +406,7 @@ button, input, textarea, select { font-family: var(--sans); }
   align-items: end;
   margin-bottom: 3.5rem;
 }
-.focus-heading { font-family: var(--serif); font-size: clamp(1.9rem, 3.2vw, 2.8rem); line-height: 1.15; color: var(--obsidian); }
+.focus-heading { font-family: var(--serif); font-size: clamp(1.9rem, 3.2vw, 2.8rem); font-weight: 300; letter-spacing: -0.01em; line-height: 1.15; color: var(--obsidian); }
 .focus-sub     { font-size: .97rem; color: var(--charcoal); line-height: 1.85; }
 
 .card-grid {
@@ -430,7 +438,7 @@ button, input, textarea, select { font-family: var(--sans); }
 }
 .feature-card:hover .card-icon { background: var(--canopy); color: #fff; }
 
-.card-title { font-family: var(--serif); font-size: 1.05rem; color: var(--obsidian); margin-bottom: .4rem; }
+.card-title { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; color: var(--obsidian); margin-bottom: .4rem; }
 .card-body  { font-size: .9rem; color: var(--stone); line-height: 1.75; }
 
 .focus-cta-strip {
@@ -442,9 +450,9 @@ button, input, textarea, select { font-family: var(--sans); }
   justify-content: space-between;
   gap: 2rem;
 }
-.focus-cta-quote { font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: rgba(245,240,229,.78); max-width: 480px; line-height: 1.6; }
+.focus-cta-quote { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 1.05rem; color: rgba(245,240,229,.78); max-width: 480px; line-height: 1.6; }
 .focus-cta-strip .btn-primary { background: var(--canopy); flex-shrink: 0; }
-.focus-cta-strip .btn-primary:hover { background: #256128; }
+.focus-cta-strip .btn-primary:hover { background: #306B34; }
 
 /* ─── Process Section ────────────────────────────────────────────────── */
 .process-section { padding: 6.5rem 0; }
@@ -459,7 +467,7 @@ button, input, textarea, select { font-family: var(--sans); }
 .process-step:last-child { border-right: none; }
 .process-step:hover { background: var(--parchment); }
 .step-num   { display: block; font-family: var(--serif); font-size: 1.4rem; color: rgba(28,28,26,.15); line-height: 1; margin-bottom: .5rem; }
-.step-title { font-family: var(--serif); font-size: 1.2rem; color: var(--obsidian); margin-bottom: .5rem; }
+.step-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; color: var(--obsidian); margin-bottom: .5rem; }
 .step-body  { font-size: .93rem; color: var(--stone); line-height: 1.8; }
 
 .info-card {
@@ -469,7 +477,7 @@ button, input, textarea, select { font-family: var(--sans); }
   margin-bottom: 1.75rem;
   border-radius: 2px;
 }
-.info-card-title { font-family: var(--serif); font-size: 1.3rem; color: var(--obsidian); margin-bottom: .65rem; }
+.info-card-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--obsidian); margin-bottom: .65rem; }
 .info-card-body  { font-size: .97rem; color: var(--charcoal); line-height: 1.9; max-width: 620px; }
 
 .ds-grid {
@@ -484,7 +492,7 @@ button, input, textarea, select { font-family: var(--sans); }
 .d-card:hover { background: var(--parchment); }
 .d-icon  { width: 1.75rem; height: 1.75rem; border-radius: 3px; background: var(--canopy-lt); display: flex; align-items: center; justify-content: center; margin-bottom: .65rem; color: var(--canopy); transition: background .2s, color .2s; }
 .d-card:hover .d-icon { background: var(--canopy); color: #fff; }
-.d-title { font-family: var(--serif); font-size: 1rem; color: var(--obsidian); margin-bottom: .3rem; }
+.d-title { font-family: var(--serif); font-size: 1rem; font-weight: 600; color: var(--obsidian); margin-bottom: .3rem; }
 .d-body  { font-size: .88rem; color: var(--stone); line-height: 1.7; }
 
 /* ─── Contact Section ────────────────────────────────────────────────── */
@@ -496,6 +504,8 @@ button, input, textarea, select { font-family: var(--sans); }
 .contact-heading {
   font-family: var(--serif);
   font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
   line-height: 1.05;
   color: var(--obsidian);
   margin-bottom: .65rem;
@@ -537,7 +547,7 @@ button, input, textarea, select { font-family: var(--sans); }
 .form-input::placeholder, .form-textarea::placeholder { color: #b0aa9f; }
 .form-input:focus, .form-textarea:focus {
   border-color: var(--canopy);
-  box-shadow: 0 0 0 3px rgba(46,125,52,.1);
+  box-shadow: 0 0 0 3px rgba(61,138,66,.1);
 }
 .form-textarea { resize: vertical; min-height: 110px; }
 .form-submit   { margin-top: 1.5rem; }
@@ -548,11 +558,11 @@ button, input, textarea, select { font-family: var(--sans); }
   border-radius: 3px;
   padding: 2.5rem;
 }
-.success-title { font-family: var(--serif); font-size: 1.5rem; color: var(--obsidian); margin-bottom: .4rem; }
+.success-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--obsidian); margin-bottom: .4rem; }
 .success-body  { font-size: .97rem; color: var(--charcoal); line-height: 1.8; }
 
 /* Sidebar */
-.why-heading { font-family: var(--serif); font-size: 1.3rem; color: var(--obsidian); margin-bottom: 1.5rem; }
+.why-heading { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--obsidian); margin-bottom: 1.5rem; }
 .why-list    { list-style: none; margin-bottom: 2.5rem; }
 .why-item {
   display: flex;
