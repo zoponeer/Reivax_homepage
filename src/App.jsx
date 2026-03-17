@@ -244,11 +244,6 @@ function About() {
               </div>
             </div>
 
-            {/* Credibility quote — replace placeholder with a real quote before launch */}
-            <blockquote className="credibility-quote">
-              <p>"Xavier approaches business ownership the way he approaches medicine — methodically, with a bias toward long-term outcomes over short-term wins. He's not looking for a deal. He's looking for the right one."</p>
-              <footer>— [Name], [Role / Affiliation]</footer>
-            </blockquote>
           </div>
 
           {/* Right col — positioning + pillars */}
