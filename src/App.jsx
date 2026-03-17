@@ -118,46 +118,90 @@ function Hero() {
       <HeroSpotlight />
 
       <div className="container hero-inner" style={{ position:'relative', zIndex:10 }}>
-        <p className="hero-kicker">St. Louis, Missouri — Founder Friendly</p>
+        <p className="hero-kicker">St. Louis, Missouri — Founder-Friendly</p>
 
         <h1 ref={headRef} className="hero-heading fade-up">
-          Considering an exit?<br />
-          <em>You don't have to decide anything yet.</em>
+          You built something worth keeping.<br />
+          <em>We think it's worth keeping, too.</em>
         </h1>
 
         <p className="hero-sub">
-          We have confidential, no-pressure conversations with founders who are
-          exploring their options — even years before they're ready to sell.
-          No brokers, no NDAs to sign upfront, no commitment. Just a direct
-          conversation with the principal.
+          We acquire B2B service businesses and hold them permanently — preserving
+          your team, your culture, and the reputation you spent decades building.
+          Whether you're ready to sell or just beginning to think about it,
+          we'd welcome a conversation.
         </p>
 
         {/* Single primary CTA */}
         <div ref={ctaRef} className="hero-actions fade-up delay-1">
           <a href="#contact" className="btn-primary">
-            Have a confidential conversation <ArrowRight size={15} />
+            See if there's a fit <ArrowRight size={15} />
           </a>
-          <div className="hero-badge">
-            <span className="hero-badge-label">Stewardship, not extraction</span>
-            <span className="hero-badge-sub">The anti-private-equity acquirer</span>
-          </div>
         </div>
 
         {/* ICP qualifier bar */}
         <div ref={statsRef} className="stats-bar fade-up delay-2">
           <div className="stat-item">
-            <span className="stat-value">$300K–700K</span>
+            <span className="stat-value">$300K–$700K</span>
             <span className="stat-label">EBITDA sweet spot</span>
           </div>
           <div className="stat-item">
-            <span className="stat-value">Forever</span>
+            <span className="stat-value">Permanent</span>
             <span className="stat-label">Holding horizon</span>
           </div>
           <div className="stat-item">
-            <span className="stat-value accent">B2B</span>
-            <span className="stat-label">Service focus</span>
+            <span className="stat-value accent">B2B Services</span>
+            <span className="stat-label">Acquisition focus</span>
           </div>
         </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Contrast ───────────────────────────────────────────────────────── */
+function Contrast() {
+  const introRef = useFadeUp()
+  const tableRef = useFadeUp(0.08)
+
+  const rows = [
+    ['Cut costs in Year 1',         'Invest in the existing team'],
+    ['Install new management',       'Keep your GM in charge'],
+    ['Rebrand and restructure',      'Preserve your name and culture'],
+    ['Flip in 3–5 years',            'Hold permanently'],
+    ['Your business is one of forty','Your business is the priority'],
+  ]
+
+  return (
+    <section className="contrast-section">
+      <div className="container">
+        <div ref={introRef} className="fade-up" style={{ textAlign:'center', marginBottom:'2.5rem' }}>
+          <p className="eyebrow">A different kind of buyer</p>
+          <h2 style={{ fontFamily:'var(--serif)', fontWeight:400, fontSize:'clamp(2rem,3.5vw,3rem)', letterSpacing:'.02em', lineHeight:1.12, color:'var(--obsidian)' }}>
+            Two paths for your business.
+          </h2>
+        </div>
+
+        <div ref={tableRef} className="contrast-table fade-up">
+          <div className="contrast-col contrast-col--left">
+            <p className="contrast-col-header">The Conventional Playbook</p>
+            {rows.map(([left]) => (
+              <div key={left} className="contrast-row contrast-row--left">{left}</div>
+            ))}
+          </div>
+          <div className="contrast-col contrast-col--right">
+            <p className="contrast-col-header">The Reivax Approach</p>
+            {rows.map(([, right]) => (
+              <div key={right} className="contrast-row contrast-row--right">{right}</div>
+            ))}
+          </div>
+        </div>
+
+        <p className="contrast-footer fade-up" ref={useFadeUp()}>
+          We're led by a practicing physician with established income outside of
+          acquisitions. We're not dependent on any single deal — which means we
+          only move forward when the fit is genuinely right for both sides.
+        </p>
       </div>
     </section>
   )
@@ -176,38 +220,20 @@ function About() {
           {/* Left col */}
           <div ref={leftRef} className="fade-up">
             <h2 className="about-heading">
-              Most of the founders we talk to<br />
-              aren't ready to sell yet.
+              Xavier Robinson
             </h2>
+            <p className="about-subtitle">Founder &amp; Principal, Reivax Partners</p>
             <div className="about-body">
               <p>
-                And that's fine. We have conversations years before a deal ever happens.
-                If you're a 50-something owner of a well-run HVAC company, a commercial
-                cleaning firm, a staffing agency, or any B2B service business — and
-                you're beginning to think about what comes next — this site was written
-                for you.
-              </p>
-              <p>
-                Most buyers will cut costs, install a new management team, and sell your
-                business in three to five years. Your employees will face uncertainty.
-                Your culture will change. Your legacy will be at risk. That is the
-                conventional PE playbook — and it is not ours.
-              </p>
-              <p className="strong">
-                We don't need this deal to work. That changes everything.
-              </p>
-              <p>
-                We're led by a practicing physician with established income outside of
-                acquisitions. We are not dependent on any single deal closing — which
-                means we only move forward when the fit is genuinely right for both
-                sides. No pressure. No manufactured urgency.
+                Practicing interventional radiologist, systems-thinker, and long-term
+                investor. Based in St. Louis. Committed to operating every acquisition
+                as a permanent steward — not a financial intermediary.
               </p>
             </div>
 
-            {/* Principal bio placeholder */}
+            {/* Principal photo placeholder */}
             <div className="principal-card">
               <div className="principal-photo-wrap">
-                {/* Photo placeholder — swap src for real headshot */}
                 <div className="principal-photo-placeholder" aria-label="Principal photo">
                   <span style={{ fontFamily:'var(--serif)', fontSize:'2rem', color:'var(--stone)', fontWeight:300 }}>X</span>
                 </div>
@@ -215,13 +241,14 @@ function About() {
               <div className="principal-bio">
                 <p className="principal-name">Xavier Robinson</p>
                 <p className="principal-title">Founder &amp; Principal, Reivax Partners</p>
-                <p className="principal-desc">
-                  Practicing physician, systems-thinker, and long-term investor. Based in
-                  St. Louis, MO. Committed to operating every acquisition as a permanent
-                  steward — not a financial intermediary.
-                </p>
               </div>
             </div>
+
+            {/* Credibility quote — replace placeholder with a real quote before launch */}
+            <blockquote className="credibility-quote">
+              <p>"Xavier approaches business ownership the way he approaches medicine — methodically, with a bias toward long-term outcomes over short-term wins. He's not looking for a deal. He's looking for the right one."</p>
+              <footer>— [Name], [Role / Affiliation]</footer>
+            </blockquote>
           </div>
 
           {/* Right col — positioning + pillars */}
@@ -288,7 +315,7 @@ const FOCUS_CARDS = [
   { icon: <TrendingUp size={15} />, title: '$300K–$700K EBITDA',     body: 'Healthy, steady profits. Particular interest in the $400K–$600K range. Not a turnaround — a proven operation.' },
   { icon: <Users size={15} />,     title: 'A real general manager',  body: 'A GM or strong operator running day-to-day. The business doesn\'t depend on your personal relationships.' },
   { icon: <Award size={15} />,     title: '10+ years in business',   body: 'A proven history, durable customer relationships, and a track record that speaks for itself.' },
-  { icon: <Heart size={15} />,     title: 'A team you care about',   body: 'People who have stayed because the culture is good. Customers who don\'t churn. That loyalty is what we protect.' },
+  { icon: <Heart size={15} />,     title: 'A team worth protecting', body: 'People who stayed because the culture is good. Customers who don\'t churn. That loyalty is exactly what we preserve.' },
 ]
 
 function Focus() {
@@ -300,13 +327,16 @@ function Focus() {
       <div className="container">
         <div ref={introRef} className="focus-intro fade-up">
           <div>
-            <p className="eyebrow">What we look for</p>
-            <h2 className="focus-heading">The perfect fit.</h2>
+            <p className="eyebrow">Who we're looking for</p>
+            <h2 className="focus-heading">Forget the industry list.<br />Here's what actually matters.</h2>
           </div>
           <p className="focus-sub">
-            We focus on high-retention B2B service businesses — commercial cleaning,
-            HVAC, facilities management, staffing, IT services, environmental services,
-            and similar industries where clients rely on your team every month.
+            If your clients pay you monthly, your team runs the work without you in
+            the room, and you've been doing this for over a decade — we're probably
+            a fit. We focus on characteristics, not categories. That said, we see the
+            strongest alignment in commercial cleaning, HVAC, facilities management,
+            staffing, IT services, environmental services, and similar B2B operations
+            where client relationships are measured in years, not transactions.
           </p>
         </div>
 
@@ -320,14 +350,49 @@ function Focus() {
           ))}
         </div>
 
-        {/* Dark strip — NO duplicate CTA button, just the quote to reinforce the message */}
         <div className="focus-cta-strip">
           <p className="focus-cta-quote">
-            "If this sounds like your business, we'd love a confidential conversation — whether you're ready to sell today or just beginning to think about it."
+            "If this sounds like your business, we'd welcome a conversation — whether you're ready to sell today or just beginning to think about it."
           </p>
           <a href="#contact" className="btn-primary" style={{ flexShrink: 0 }}>
-            Reach out <ArrowRight size={14} />
+            See if there's a fit <ArrowRight size={14} />
           </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Life After the Deal ────────────────────────────────────────────── */
+function LifeAfter() {
+  const ref = useFadeUp()
+  return (
+    <section className="lifeafter-section">
+      <div className="container">
+        <div ref={ref} className="lifeafter-inner fade-up">
+          <p className="eyebrow">What happens after you sell</p>
+          <h2 style={{ fontFamily:'var(--serif)', fontWeight:400, fontSize:'clamp(2rem,3.5vw,3rem)', letterSpacing:'.02em', lineHeight:1.12, color:'var(--obsidian)', marginBottom:'2rem' }}>
+            Your Monday morning, six months from now.
+          </h2>
+          <div className="lifeafter-body">
+            <p>
+              The office manager who's been with you for twelve years is still at her
+              desk. Your GM is still running the Monday meeting. Your biggest client
+              renewed their contract last month without a second thought — because
+              nothing changed except the name on the cap table.
+            </p>
+            <p>
+              You spent the morning on a consulting call — part of your 3–6 month
+              transition agreement — and the afternoon was yours. Maybe you're advising
+              another founder. Maybe you're finally taking that trip. Maybe you're just
+              sleeping better because the weight of ownership isn't yours alone anymore.
+            </p>
+            <p>
+              That's what a good transition looks like. Not a press release about
+              "synergies." Not layoffs dressed up as "optimization." Just continuity —
+              for your team, your clients, and you.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -336,10 +401,10 @@ function Focus() {
 
 /* ─── Process ────────────────────────────────────────────────────────── */
 const D_CARDS = [
-  { icon: <EyeOff size={13} />, title: 'Discreet', body: 'We operate under mutual NDA from the first substantive conversation. Your name and business stay confidential — always.' },
-  { icon: <Zap    size={13} />, title: 'Decisive', body: "If we're a fit, you'll know quickly. If not, we'll say so clearly and part as friends." },
-  { icon: <Phone  size={13} />, title: 'Direct',   body: 'Plain language. No jargon, no games. You\'re talking to the principal on every call.' },
-  { icon: <Wrench size={13} />, title: 'Diligent', body: 'Thorough but efficient diligence that respects your time — and your employees\' privacy.' },
+  { icon: <EyeOff size={13} />, title: 'Confidential', body: 'Mutual NDA from the first substantive conversation. Your employees and competitors never know we spoke.' },
+  { icon: <Zap    size={13} />, title: 'Decisive',     body: "If we're a fit, you'll know quickly. If not, we'll say so clearly and part as friends." },
+  { icon: <Phone  size={13} />, title: 'Direct',       body: 'Plain language, no jargon. You\'re talking to the principal on every call.' },
+  { icon: <Wrench size={13} />, title: 'Efficient',    body: 'Thorough diligence that respects your time and your employees\' privacy.' },
 ]
 
 function Process() {
@@ -357,13 +422,13 @@ function Process() {
             fontSize: 'clamp(2rem, 3.5vw, 3rem)',
             letterSpacing: '.02em', lineHeight: 1.12, color: 'var(--obsidian)',
           }}>
-            Simple, fast, and respectful.
+            Three steps. No surprises.
           </h2>
         </div>
 
         <div ref={stepRef} className="process-steps fade-up">
           {[
-            { num: '01', title: 'Chat',  body: 'A 30-minute confidential call. No NDA required upfront, no broker involved, no obligation — just an honest conversation.' },
+            { num: '01', title: 'Conversation', body: 'A 30-minute confidential call with Xavier — the person who makes the decision. No NDA required upfront, no broker involved, no obligation.' },
             { num: '02', title: 'Offer', body: 'A simple, one-page letter of intent. Clear terms, fair value. No surprise conditions buried in footnotes.' },
             { num: '03', title: 'Close', body: 'We target 60 days from LOI to close. More complex situations may take 90. We move at your pace.' },
           ].map(s => (
@@ -411,25 +476,9 @@ function Process() {
 }
 
 /* ─── Contact ────────────────────────────────────────────────────────── */
-const EBITDA_OPTIONS = [
-  { value: '', label: 'Select a range…' },
-  { value: 'under-300k', label: 'Under $300K' },
-  { value: '300-500k', label: '$300K – $500K' },
-  { value: '500-700k', label: '$500K – $700K' },
-  { value: 'over-700k', label: 'Over $700K' },
-  { value: 'unknown', label: 'Not sure / prefer not to say' },
-]
-const STAGE_OPTIONS = [
-  { value: '', label: 'Select one…' },
-  { value: 'just-curious', label: 'Just curious, years out' },
-  { value: 'exploring', label: 'Actively exploring options' },
-  { value: 'ready', label: 'Ready to move forward' },
-]
-
 function Contact() {
   const [form, setForm] = useState({
-    name: '', email: '', company: '', industry: '',
-    ebitda: '', stage: '', message: '',
+    name: '', email: '', message: '',
   })
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -460,10 +509,10 @@ function Contact() {
   return (
     <section id="contact" className="contact-section">
       <div className="container">
-        <h2 className="contact-heading">Let's talk.</h2>
+        <h2 className="contact-heading">Start a conversation.</h2>
         <p className="contact-sub">
-          We respond to every inquiry within 24 hours — directly from the principal,
-          not a junior analyst. Entirely confidential, no strings attached.
+          Xavier responds personally within 24 hours. Entirely confidential,
+          no strings attached.
         </p>
 
         <div className="contact-grid">
@@ -494,43 +543,9 @@ function Contact() {
                   </div>
                 </div>
 
-                <div className="form-row">
-                  <div className="form-group">
-                    <label className="form-label">Company <span>(Optional)</span></label>
-                    <input className="form-input" type="text"
-                      value={form.company} onChange={set('company')} />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Industry <span>(Optional)</span></label>
-                    <input className="form-input" type="text" placeholder="e.g. HVAC, staffing"
-                      value={form.industry} onChange={set('industry')} />
-                  </div>
-                </div>
-
-                <div className="form-row">
-                  <div className="form-group">
-                    <label className="form-label">Approx. EBITDA range</label>
-                    <select className="form-input" value={form.ebitda} onChange={set('ebitda')}
-                      style={{ cursor: 'pointer' }}>
-                      {EBITDA_OPTIONS.map(o => (
-                        <option key={o.value} value={o.value}>{o.label}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Where are you in the process?</label>
-                    <select className="form-input" value={form.stage} onChange={set('stage')}
-                      style={{ cursor: 'pointer' }}>
-                      {STAGE_OPTIONS.map(o => (
-                        <option key={o.value} value={o.value}>{o.label}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
                 <div className="form-group">
                   <label className="form-label">
-                    Message <span>(Optional — tell us anything you'd like us to know)</span>
+                    Message <span>(Optional — tell us anything you'd like us to know: your industry, where you are in the process, or just that you'd like to talk)</span>
                   </label>
                   <textarea className="form-textarea"
                     placeholder="Not required — but feel free to share anything that would help us understand your situation."
@@ -555,17 +570,17 @@ function Contact() {
                 {
                   icon: <Lock size={12} />,
                   title: 'Guaranteed confidentiality',
-                  body: 'We operate under mutual NDA from the first substantive conversation. Your employees and competitors will never know we spoke — that\'s a mechanism, not just a promise.',
+                  body: 'Mutual NDA from the first real conversation. This is a mechanism, not a promise.',
                 },
                 {
                   icon: <Zap size={12} />,
-                  title: 'A clear answer, quickly',
-                  body: "We don't waste your time. You'll receive a direct yes or no within 24–48 hours of your first call.",
+                  title: 'A clear answer, fast',
+                  body: 'Direct yes or no within 48 hours of your first call.',
                 },
                 {
                   icon: <Phone size={12} />,
-                  title: 'You\'re talking to the principal',
-                  body: 'No brokers, no junior analysts. Every conversation is with the person who makes the decision.',
+                  title: 'You\'re talking to the decision-maker',
+                  body: 'No brokers. No junior analysts. Every conversation is with Xavier.',
                 },
               ].map(item => (
                 <li key={item.title} className="why-item">
@@ -626,7 +641,7 @@ function Footer() {
             <span className="footer-wordmark">Reivax Partners</span>
           </div>
           <p className="footer-tagline">
-            Building a permanent home for world-class service businesses.
+            A permanent home for world-class service businesses.
           </p>
         </div>
         <div className="footer-right">
@@ -654,8 +669,10 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <About />
+        <Contrast />
         <Focus />
+        <LifeAfter />
+        <About />
         <Process />
         <Contact />
       </main>

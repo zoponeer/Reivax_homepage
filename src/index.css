@@ -690,4 +690,112 @@ button, input, textarea, select { font-family: var(--sans); }
   .focus-cta-strip { padding: 1.5rem; }
   .focus-cta-strip .btn-primary { width: 100%; justify-content: center; }
   .btn-primary { width: 100%; justify-content: center; }
+
+  .contrast-table { grid-template-columns: 1fr; }
+  .contrast-col-header { font-size: .8rem; }
+}
+
+/* ─── Contrast Section ────────────────────────────────────────────────── */
+.contrast-section {
+  background: var(--parchment);
+  padding: 6rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.contrast-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.contrast-col { display: flex; flex-direction: column; }
+.contrast-col--left  { background: #fff; }
+.contrast-col--right { background: var(--obsidian); }
+
+.contrast-col-header {
+  font-family: var(--sans);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 1rem 1.5rem .75rem;
+}
+.contrast-col--left  .contrast-col-header { color: var(--ember); border-bottom: 1px solid var(--border); }
+.contrast-col--right .contrast-col-header { color: var(--canopy); border-bottom: 1px solid rgba(255,255,255,.1); }
+
+.contrast-row {
+  padding: .85rem 1.5rem;
+  font-size: .95rem;
+  line-height: 1.5;
+  border-bottom: 1px solid;
+}
+.contrast-row:last-child { border-bottom: none; }
+.contrast-row--left  { color: var(--charcoal); border-color: var(--border); }
+.contrast-row--right { color: rgba(255,255,255,.85); border-color: rgba(255,255,255,.08); }
+
+.contrast-footer {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--stone);
+  font-size: .95rem;
+  line-height: 1.8;
+}
+
+/* ─── Life After the Deal Section ────────────────────────────────────── */
+.lifeafter-section {
+  background: var(--ivory);
+  padding: 6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.lifeafter-inner {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.lifeafter-body p {
+  margin-bottom: 1.4rem;
+  color: var(--charcoal);
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+.lifeafter-body p:last-child { margin-bottom: 0; }
+
+/* ─── About subtitle ─────────────────────────────────────────────────── */
+.about-subtitle {
+  font-size: .9rem;
+  color: var(--stone);
+  margin-bottom: 1.5rem;
+  letter-spacing: .01em;
+}
+
+/* ─── Credibility quote ──────────────────────────────────────────────── */
+.credibility-quote {
+  margin-top: 2rem;
+  padding: 1.5rem 1.75rem;
+  border-left: 3px solid var(--canopy);
+  background: var(--parchment);
+  border-radius: 0 8px 8px 0;
+}
+
+.credibility-quote p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--charcoal);
+  font-style: italic;
+  margin-bottom: .6rem;
+}
+
+.credibility-quote footer {
+  font-size: .85rem;
+  color: var(--stone);
+  font-style: normal;
 }
