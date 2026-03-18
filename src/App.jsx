@@ -177,7 +177,7 @@ function Contrast() {
       <div className="container">
         <div ref={introRef} className="fade-up" style={{ textAlign:'center', marginBottom:'2.5rem' }}>
           <p className="eyebrow">A different kind of buyer</p>
-          <h2 style={{ fontFamily:'var(--serif)', fontWeight:400, fontSize:'clamp(2rem,3.5vw,3rem)', letterSpacing:'.02em', lineHeight:1.12, color:'var(--obsidian)' }}>
+          <h2 style={{ fontFamily:'var(--serif)', fontWeight:400, fontSize:'clamp(2.2rem,3.8vw,3.2rem)', letterSpacing:0, lineHeight:1.1, color:'var(--obsidian)' }}>
             Two paths for your business.
           </h2>
         </div>
@@ -366,7 +366,7 @@ function LifeAfter() {
       <div className="container">
         <div ref={ref} className="lifeafter-inner fade-up">
           <p className="eyebrow">What happens after you sell</p>
-          <h2 style={{ fontFamily:'var(--serif)', fontWeight:400, fontSize:'clamp(2rem,3.5vw,3rem)', letterSpacing:'.02em', lineHeight:1.12, color:'var(--obsidian)', marginBottom:'2rem' }}>
+          <h2 style={{ fontFamily:'var(--serif)', fontWeight:400, fontSize:'clamp(2.2rem,3.8vw,3.2rem)', letterSpacing:0, lineHeight:1.1, color:'var(--obsidian)', marginBottom:'2rem' }}>
             Your Monday morning, six months from now.
           </h2>
           <div className="lifeafter-body">
@@ -414,8 +414,8 @@ function Process() {
           <p className="eyebrow">Our Process</p>
           <h2 style={{
             fontFamily: 'var(--serif)', fontWeight: 400,
-            fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-            letterSpacing: '.02em', lineHeight: 1.12, color: 'var(--obsidian)',
+            fontSize: 'clamp(2.2rem, 3.8vw, 3.2rem)',
+            letterSpacing: 0, lineHeight: 1.1, color: 'var(--obsidian)',
           }}>
             Three steps. No surprises.
           </h2>
