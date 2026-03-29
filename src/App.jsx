@@ -650,6 +650,7 @@ function Footer() {
           <div className="footer-legal">
             <a href="#" className="footer-legal-link">Privacy Policy</a>
             <a href="#" className="footer-legal-link">Terms of Service</a>
+            <a href="https://deal-team-dashboard.vercel.app/" className="footer-legal-link" target="_blank" rel="noopener noreferrer">Internal</a>
           </div>
         </div>
       </div>
