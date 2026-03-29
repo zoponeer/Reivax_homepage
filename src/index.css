@@ -948,3 +948,107 @@ button, input, textarea, select { font-family: var(--sans); }
   color: var(--stone);
   font-style: normal;
 }
+
+/* ─── Legal Pages ─────────────────────────────────────────────────────── */
+.legal-page {
+  background: var(--ivory);
+  min-height: 100vh;
+  padding: 5rem 0 7rem;
+}
+
+.legal-container {
+  max-width: 740px;
+}
+
+.legal-back {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--sans);
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--stone);
+  margin-bottom: 3rem;
+  transition: color .2s;
+}
+.legal-back:hover { color: var(--obsidian); }
+
+.legal-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.legal-title {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.1;
+  color: var(--obsidian);
+  margin-bottom: .65rem;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+.legal-effective {
+  font-size: .82rem;
+  color: var(--stone);
+  font-family: var(--sans);
+  letter-spacing: .04em;
+}
+
+.legal-body > p,
+.legal-body > ul,
+.legal-body > div {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: var(--charcoal);
+  line-height: 1.9;
+}
+
+.legal-body h2 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--obsidian);
+  margin-top: 2.5rem;
+  margin-bottom: .75rem;
+  font-feature-settings: 'kern' 1;
+}
+
+.legal-body ul {
+  padding-left: 1.5rem;
+}
+
+.legal-body ul li {
+  margin-bottom: .4rem;
+  font-size: 1rem;
+  color: var(--charcoal);
+  line-height: 1.8;
+}
+
+.legal-contact {
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem 1.75rem;
+  margin-top: .75rem;
+}
+
+.legal-contact p {
+  margin-bottom: .35rem !important;
+  font-size: .97rem !important;
+}
+
+.legal-contact a {
+  color: var(--canopy);
+  transition: color .2s;
+}
+.legal-contact a:hover { color: #306B34; }
+
+.legal-body a {
+  color: var(--canopy);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

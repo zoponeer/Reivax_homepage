@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
+import { Routes, Route, Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import {
   ArrowRight, RefreshCw, Building2, TrendingUp,
   Users, Award, Heart, EyeOff, Zap, Phone,
   Wrench, Menu, X, Mail, MapPin, Lock,
 } from 'lucide-react'
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
+import TermsOfService from './pages/TermsOfService.jsx'
 
 /* ─── Hero spotlight (adapted from Aceternity UI / motion) ──────────── */
 const SPOT_GREEN_1 = "radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(125,42%,52%,.16) 0, hsla(125,42%,32%,.05) 50%, hsla(125,42%,22%,0) 80%)"
@@ -648,8 +651,8 @@ function Footer() {
           </ul>
           <p className="footer-copy">© 2026 Reivax Partners LLC. St. Louis, MO.</p>
           <div className="footer-legal">
-            <a href="#" className="footer-legal-link">Privacy Policy</a>
-            <a href="#" className="footer-legal-link">Terms of Service</a>
+            <Link to="/privacy" className="footer-legal-link">Privacy Policy</Link>
+            <Link to="/terms" className="footer-legal-link">Terms of Service</Link>
             <a href="https://deal-team-dashboard.vercel.app/" className="footer-legal-link" target="_blank" rel="noopener noreferrer">Internal</a>
           </div>
         </div>
@@ -659,7 +662,7 @@ function Footer() {
 }
 
 /* ─── App ────────────────────────────────────────────────────────────── */
-export default function App() {
+function HomePage() {
   return (
     <>
       <Navbar />
@@ -674,5 +677,15 @@ export default function App() {
       </main>
       <Footer />
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/terms" element={<TermsOfService />} />
+    </Routes>
   )
 }
