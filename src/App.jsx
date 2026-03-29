@@ -145,7 +145,7 @@ function Hero() {
         {/* ICP qualifier bar */}
         <div ref={statsRef} className="stats-bar fade-up delay-2">
           <div className="stat-item">
-            <span className="stat-value">$300K–$700K</span>
+            <span className="stat-value">$500K–$800K</span>
             <span className="stat-label">EBITDA sweet spot</span>
           </div>
           <div className="stat-item">
@@ -310,7 +310,7 @@ function About() {
 const FOCUS_CARDS = [
   { icon: <RefreshCw size={15} />, title: 'Sticky revenue',          body: 'Retainers, contracts, or subscriptions. Clients renew because they rely on you — not because of a promotion.' },
   { icon: <Building2 size={15} />, title: 'B2B, not B2C',            body: 'You\'re an essential operational partner to other businesses. Think facilities, staffing, accounting, HVAC, IT services.' },
-  { icon: <TrendingUp size={15} />, title: '$300K–$700K EBITDA',     body: 'Healthy, steady profits. Particular interest in the $400K–$600K range. Not a turnaround — a proven operation.' },
+  { icon: <TrendingUp size={15} />, title: '$500K–$800K EBITDA',     body: 'Healthy, steady profits. Particular interest in the $600K–$750K range. Not a turnaround — a proven operation.' },
   { icon: <Users size={15} />,     title: 'A real general manager',  body: 'A GM or strong operator running day-to-day. The business doesn\'t depend on your personal relationships.' },
   { icon: <Award size={15} />,     title: '10+ years in business',   body: 'A proven history, durable customer relationships, and a track record that speaks for itself.' },
   { icon: <Heart size={15} />,     title: 'A team worth protecting', body: 'People who stayed because the culture is good. Customers who don\'t churn. That loyalty is exactly what we preserve.' },
