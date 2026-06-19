@@ -149,7 +149,7 @@ button, input, textarea, select { font-family: var(--sans); }
   gap: .75rem;
   text-decoration: none;
 }
-.nav-logo-img { width: 34px; height: 34px; object-fit: contain; }
+.nav-logo-img { width: 54px; height: 54px; object-fit: contain; }
 .nav-wordmark {
   font-family: var(--serif);
   font-size: 1.3rem;
@@ -755,7 +755,7 @@ button, input, textarea, select { font-family: var(--sans); }
 .footer { border-top: 1px solid var(--border); padding: 2.75rem 0; background: var(--ivory); }
 .footer-inner { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem; }
 .footer-brand { display: flex; align-items: center; gap: .6rem; margin-bottom: .45rem; }
-.footer-logo-img { width: 26px; height: 26px; object-fit: contain; }
+.footer-logo-img { width: 44px; height: 44px; object-fit: contain; }
 .footer-wordmark {
   font-family: var(--serif);
   font-size: 1.15rem;
