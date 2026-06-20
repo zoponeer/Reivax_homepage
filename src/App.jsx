@@ -169,7 +169,7 @@ function Contrast() {
 
   const rows = [
     ['Cut costs in Year 1',         'Invest in the existing team'],
-    ['Install new management',       'Keep your GM in charge'],
+    ['Install new management',       'Back your existing leadership'],
     ['Rebrand and restructure',      'Preserve your name and culture'],
     ['Flip in 3–5 years',            'Hold permanently'],
     ['Your business is one of forty','Your business is the priority'],
@@ -283,12 +283,12 @@ function About() {
                 {
                   label: 'What We Buy',
                   title: 'Service businesses with staying power',
-                  body: 'B2B sticky revenue. Loyal customer bases. Operations led by GMs, not the seller\'s personality.',
+                  body: 'Recurring revenue, strong cash generation, and loyal customers. Operations led by a GM, not the seller\'s personality.',
                 },
                 {
                   label: 'How We Operate',
                   title: 'Stewardship, not extraction',
-                  body: 'We preserve culture, back management, and build systematically — without the conventional PE playbook.',
+                  body: 'We preserve culture and back your team — then help good businesses become great through patient capital, better systems, and long-term support. Never the conventional PE playbook.',
                 },
               ].map(p => (
                 <div key={p.label} className="pillar">
@@ -334,7 +334,10 @@ function Focus() {
             a fit. We focus on characteristics, not categories. That said, we see the
             strongest alignment in commercial cleaning, HVAC, facilities management,
             staffing, IT services, environmental services, and similar B2B operations
-            where client relationships are measured in years, not transactions.
+            where client relationships are measured in years, not transactions. We're
+            particularly drawn to businesses with recurring revenue, strong cash
+            generation, and a team that can do even more with additional resources and
+            long-term support.
           </p>
         </div>
 
@@ -443,9 +446,9 @@ function Process() {
           <p className="info-card-body">
             Selling your life's work is emotional. We know that. We prioritize a seamless
             transition that honors your existing team and protects the reputation you spent
-            decades building. Your GM stays in charge. Most founders transition out over
-            3–6 months with a consulting agreement. The business keeps its name, brand,
-            and culture.
+            decades building. Strong existing leadership keeps leading wherever possible.
+            Most founders transition out over 3–6 months with a consulting agreement. The
+            business keeps its name, brand, and culture.
           </p>
         </div>
 
@@ -462,9 +465,11 @@ function Process() {
         <div className="info-card fade-up" ref={useFadeUp()} style={{ marginBottom: 0 }}>
           <h3 className="info-card-title">After the founder transition</h3>
           <p className="info-card-body">
-            Your GM remains in charge of operations. We provide strategic support and
-            financial management while staying out of day-to-day execution. The business
-            keeps its name, brand, culture, and team. We think in decades — not quarters.
+            Your existing leadership continues to run operations. We provide strategic
+            support, financial discipline, and the resources of a permanent owner — better
+            systems, smarter capital, and room to grow — while staying out of day-to-day
+            execution. The business keeps its name, brand, culture, and team. We reinvest
+            for the long term and think in decades, not quarters.
           </p>
         </div>
 
