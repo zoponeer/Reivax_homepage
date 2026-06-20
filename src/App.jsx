@@ -145,7 +145,7 @@ function Hero() {
         {/* ICP qualifier bar */}
         <div ref={statsRef} className="stats-bar fade-up delay-2">
           <div className="stat-item">
-            <span className="stat-value">$500K–$800K</span>
+            <span className="stat-value">$500K–$1M+</span>
             <span className="stat-label">EBITDA sweet spot</span>
           </div>
           <div className="stat-item">
@@ -310,8 +310,8 @@ function About() {
 const FOCUS_CARDS = [
   { icon: <RefreshCw size={15} />, title: 'Sticky revenue',          body: 'Retainers, contracts, or subscriptions. Clients renew because they rely on you — not because of a promotion.' },
   { icon: <Building2 size={15} />, title: 'B2B, not B2C',            body: 'You\'re an essential operational partner to other businesses. Think facilities, staffing, accounting, HVAC, IT services.' },
-  { icon: <TrendingUp size={15} />, title: '$500K–$800K EBITDA',     body: 'Healthy, steady profits. Particular interest in the $600K–$750K range. Not a turnaround — a proven operation.' },
-  { icon: <Users size={15} />,     title: 'A real general manager',  body: 'A GM or strong operator running day-to-day. The business doesn\'t depend on your personal relationships.' },
+  { icon: <TrendingUp size={15} />, title: '$500K–$1M+ EBITDA',       body: 'Healthy, steady profits — typically $500K to $1M and up. Not a turnaround, a proven operation.' },
+  { icon: <Users size={15} />,     title: 'Leadership already in place', body: 'A GM, strong operator, or leadership team capable of running day-to-day operations without the owner\'s constant involvement. The business doesn\'t depend on your personal relationships.' },
   { icon: <Award size={15} />,     title: '10+ years in business',   body: 'A proven history, durable customer relationships, and a track record that speaks for itself.' },
   { icon: <Heart size={15} />,     title: 'A team worth protecting', body: 'People who stayed because the culture is good. Customers who don\'t churn. That loyalty is exactly what we preserve.' },
 ]
@@ -351,7 +351,33 @@ function Focus() {
           ))}
         </div>
 
-        <div className="focus-cta-strip">
+        <div className="exclusions fade-up" ref={useFadeUp(0.08)}
+          style={{ marginTop: '3.5rem', borderTop: '1px solid rgba(0,0,0,.08)', paddingTop: '2.75rem' }}>
+          <p className="eyebrow">What we don't buy</p>
+          <h3 style={{ fontFamily: 'var(--serif)', fontWeight: 400, fontSize: 'clamp(1.5rem,2.6vw,2rem)', letterSpacing: 0, lineHeight: 1.15, color: 'var(--obsidian)', margin: '0 0 .75rem' }}>
+            Just as important as what we look for.
+          </h3>
+          <p style={{ color: 'var(--stone)', fontSize: '1.02rem', lineHeight: 1.6, maxWidth: '46rem', margin: '0 0 1.5rem' }}>
+            We're a focused buyer, not a generalist. To save everyone time, here's what
+            falls outside our box.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.6rem' }}>
+            {[
+              'Turnarounds & distressed businesses',
+              'Owner-dependent operations',
+              'Businesses requiring daily owner involvement',
+              'Startups without a proven track record',
+              'Heavy manufacturing',
+              'Retail & restaurants',
+            ].map(x => (
+              <span key={x} style={{ fontSize: '.92rem', color: 'var(--obsidian)', padding: '.5rem .95rem', border: '1px solid rgba(0,0,0,.12)', borderRadius: '999px', background: 'rgba(0,0,0,.02)' }}>
+                {x}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="focus-cta-strip" style={{ marginTop: '3.5rem' }}>
           <p className="focus-cta-quote">
             "If this sounds like your business, we'd welcome a conversation — whether you're ready to sell today or just beginning to think about it."
           </p>
